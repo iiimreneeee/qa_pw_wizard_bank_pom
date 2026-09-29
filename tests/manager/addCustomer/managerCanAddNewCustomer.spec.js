@@ -1,8 +1,8 @@
 import { test, expect } from '@playwright/test';
 import { faker } from '@faker-js/faker';
-import { AddCustomerPage } from '../../../src/pages/manager/AddCustomerPage.js';
-import { BankManagerMainPage } from '../../../src/pages/manager/BankManagerMainPage.js';
-import { CustomersListPage } from '../../../src/pages/manager/CustomersListPage.js';
+import { AddCustomerPage } from '../../../src/pages/manager/AddCustomerPage';
+import { BankManagerMainPage } from '../../../src/pages/manager/BankManagerMainPage';
+import { CustomersListPage } from '../../../src/pages/manager/CustomersListPage';
 
 test('Assert manager can add new customer', async ({ page }) => {
   const addCustomerPage = new AddCustomerPage(page);

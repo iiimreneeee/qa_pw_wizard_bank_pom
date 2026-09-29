@@ -1,9 +1,9 @@
 import { test, expect } from '@playwright/test';
 import { faker } from '@faker-js/faker';
-import { AddCustomerPage } from '../../../src/pages/manager/AddCustomerPage.js';
-import { OpenAccountPage } from '../../../src/pages/manager/OpenAccountPage.js';
-import { BankManagerMainPage } from '../../../src/pages/manager/BankManagerMainPage.js';
-import { CustomersListPage } from '../../../src/pages/manager/CustomersListPage.js';
+import { AddCustomerPage } from '../../../src/pages/manager/AddCustomerPage';
+import { OpenAccountPage } from '../../../src/pages/manager/OpenAccountPage';
+import { BankManagerMainPage } from '../../../src/pages/manager/BankManagerMainPage';
+import { CustomersListPage } from '../../../src/pages/manager/CustomersListPage';
 
 test.describe('Open account tests', () => {
   let firstName;

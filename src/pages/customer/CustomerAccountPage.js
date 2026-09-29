@@ -14,13 +14,13 @@ export class CustomerAccountPage {
     this.transactionsButton = page.getByRole('button', {
       name: 'Transactions',
     });
-    this.withdrawlButton = page.getByRole('button', { name: 'Withdraw' });
+    this.withdrawalButton = page.getByRole('button', { name: 'Withdraw' });
     this.amountInputField = page.getByPlaceholder('amount');
     this.depositFormButton = page.getByRole('form').getByRole('button', {
       name: 'Deposit',
     });
     this.depositSuccessfulMessage = page.getByText('Deposit Successful');
-    this.withdrawlFormButton = page.getByRole('form').getByRole('button', {
+    this.withdrawalFormButton = page.getByRole('form').getByRole('button', {
       name: 'Withdraw',
     });
     this.withdrawNoBalanceErrorMessage = page.getByText(
@@ -42,6 +42,13 @@ export class CustomerAccountPage {
     await expect(this.accountDataLine).toContainText(text);
   }
 
+  async getBalance() {
+    const text = await this.accountDataLine.innerText();
+    const match = text.match(/Balance\s*:\s*(\d+)/);
+
+    return Number(match[1]);
+  }
+
   async clickDepositButton() {
     await this.depositButton.click();
   }
@@ -50,8 +57,8 @@ export class CustomerAccountPage {
     await this.transactionsButton.click();
   }
 
-  async clickWithdrawlButton() {
-    await this.withdrawlButton.click();
+  async clickWithdrawalButton() {
+    await this.withdrawalButton.click();
   }
 
   async fillAmountInputField(amount) {
@@ -62,8 +69,8 @@ export class CustomerAccountPage {
     await this.depositFormButton.click();
   }
 
-  async clickWithdrawlFormButton() {
-    await this.withdrawlFormButton.click();
+  async clickWithdrawalFormButton() {
+    await this.withdrawalFormButton.click();
   }
 
   async clickLogoutButton() {

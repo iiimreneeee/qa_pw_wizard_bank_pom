@@ -12,16 +12,22 @@ test('Assert the deposit can be opened', async ({ page }) => {
   await customerLoginPage.open();
   await customerLoginPage.selectCustomer('Harry Potter');
   await customerLoginPage.clickLoginButton();
+
+  const initialBalance = await accountPage.getBalance();
+
   await accountPage.clickDepositButton();
 
-  const amount = faker.number.int(100).toString();
+  const amount = faker.number.int({ min: 1, max: 100 }).toString();
+
   await accountPage.fillAmountInputField(amount);
   await accountPage.clickDepositFormButton();
   await accountPage.assertDepositSuccessfulMessageIsVisible();
-  await accountPage.assertAccountLineContainsText(`Balance : ${amount}`);
+  await accountPage.assertAccountLineContainsText(
+    `Balance : ${initialBalance + Number(amount)}`,
+  );
   await accountPage.clickTransactionsButton();
   await transactionsPage.assertHeaderIsVisible();
-  await page.waitForTimeout(1000); 
+  await page.waitForTimeout(1000);
   await transactionsPage.reload();
   await transactionsPage.assertFirstRowAmountContainsText(amount);
   await transactionsPage.assertFirstRowTypeContainsText('Credit');
